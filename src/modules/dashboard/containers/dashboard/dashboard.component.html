@@ -1,0 +1,22 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <!-- <div class='loader flex flex-row' *ngIf="dataLoading" id='loader-2'
+        style="text-align: center;margin-right: auto;margin-left: auto;">
+        <span></span><span></span><span></span>
+      </div> -->
+    <div class="row" >
+        <div class="col-xl-3 col-md-6" >
+            <sb-card-view-details link="/applicants" background="bg-primary"><div class="card-body">Applicants - {{dashboardData.applicants}}</div></sb-card-view-details>
+        </div>
+        
+        <div class="col-xl-3 col-md-6">
+            <sb-card-view-details link="/dashboard" background="bg-success"><div class="card-body">Freshers - {{dashboardData.freshers}}</div></sb-card-view-details>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <sb-card-view-details link="/dashboard" background="bg-warning"><div class="card-body">Experiance - {{dashboardData.experience}}</div></sb-card-view-details>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <sb-card-view-details link="/jobs" background="bg-danger"><div class="card-body">Jobs - {{dashboardData.jobs}}</div></sb-card-view-details>
+        </div>
+</div>
+</sb-layout-dashboard>

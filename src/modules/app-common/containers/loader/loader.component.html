@@ -1,0 +1,18 @@
+<div class="flex flex-col w-full loader--wrapper">
+    
+    <div title="facts">
+        <div class="loader-spinner">
+            <div class="loader-outter">
+                <div class="flex flex-col loader-inner" >
+                    <img *ngIf="loaderObj.type=='Facts'" src="assets/images/ui/fact.png">
+                    <img *ngIf="loaderObj.type=='Joke'" src="assets/images/ui/smile.png">
+                    <h1>{{loaderObj.content}}</h1>
+                    <div class='loader'  id='loader-2' style="text-align: center;">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <h3>This may take a moment</h3>
+                </div>    
+            </div>    
+        </div>
+    </div>
+</div>

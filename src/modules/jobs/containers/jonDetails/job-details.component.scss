@@ -1,0 +1,118 @@
+
+
+
+.Customer{
+  margin-left: 500px;
+  margin-top: 50px;
+  font-size:3vw;
+}
+.header{
+  background-color: #ffffff;
+  font-weight: 100;
+}
+
+.tbody{
+  overflow: scroll;
+  background-color: #ffffff;
+}
+
+
+.form-control{
+  border-radius: 20px;
+}
+div.card {
+ 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+div.header {
+ 
+  color: white;
+ 
+}
+.drop {
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  // padding: 12px;
+  font-size: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.dropbtn {
+  background-color: white;
+  color: white;
+ 
+  font-size: 5px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  // margin-right: 200%;
+  margin-left: -50%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 60px;
+  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-left: -200%;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  margin-left: -50%;
+}
+
+.dropdown-content a:hover {background-color: #ddd;  min-width: -50px;}
+
+.dropdown:hover .dropdown-content {display: block;  min-width: 160px;}
+
+.dropdown:hover .dropbtn {background-color: white}
+.dot {
+  height:5px;
+  width: 5px;
+  
+  background-color: #000000;
+  border-radius: 100%;
+  display: inline-block;
+}
+table, th, td {
+  // border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  // text-align: left;
+  font-size: 1.2rem;
+}
+.box{
+  background-color: #ffffff;
+  width: 80%;
+  margin-left: 10%;
+}
+h3{
+  margin-left: 35%;
+}
+th{
+  margin-left: 300px;
+}
+// .previous{
+//   // margin-left: 10%;
+// }
+
+
+
+
+
+

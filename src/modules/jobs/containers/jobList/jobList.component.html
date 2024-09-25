@@ -1,0 +1,125 @@
+<sb-layout-dashboard>
+  <sb-dashboard-head title="Share Jobs" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <div class="row" style="margin-left:0%">
+        <div class="col-sm-3">
+          <!-- <h2 style="float: left;">Share Jobs</h2> -->
+        </div>
+        <div class="col-sm-1" style="width: 74px;">
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group has-search">
+            <i  aria-hidden="true" style="margin-left: 78%; position: absolute; z-index: 1;"></i>
+            <input type="text"  [(ngModel)]="searchText"  class="form-control" placeholder="Search" (keyup.enter)="filterData()">
+            </div>
+      </div>
+        <div class="col-sm-2" style="width: 300px; display: flex;">
+          <button class="btn btn-primary rounded-pill" (click)="addNewJob()"  style=" height: 44px;">New Job +</button>
+        </div>
+      </div>
+            
+      <div class="card">
+        <div class="header">
+          <div class="table-responsive">
+            <table mat-table matSort class="table table-hover  border-light" (matSortChange)="sortData($event)"
+              [dataSource]="dataSource">
+              <!-- Name Column -->
+              <ng-container matColumnDef="job_id">
+                <th mat-header-cell mat-sort-header="job_id" *matHeaderCellDef> Job ID </th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;padding-top: 10px;" [matTooltip]="element.description"> {{element.job_id}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="company_name">
+                <th mat-header-cell mat-sort-header="company_name" *matHeaderCellDef>Company Name</th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;padding-top: 10px;" [matTooltip]="element.description"> {{element.company_name}}</td>
+              </ng-container>
+      
+              <!-- lastName Column -->
+              <ng-container matColumnDef="experience_level">
+                <th mat-header-cell mat-sort-header="experience_level" *matHeaderCellDef> Experience Level </th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;padding-top: 10px;" [matTooltip]="element.description"> {{element.experience_level}} </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="job_link">
+                <th mat-header-cell mat-sort-header="job_link" *matHeaderCellDef> Link </th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;padding-top: 10px;color: blue;cursor: pointer;" >{{shortName(element.job_link)}} <mat-icon [cdkCopyToClipboard]="element.job_link" matTooltip="Click here for copy link">file_copy</mat-icon>  </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="job_role">
+                <th mat-header-cell mat-sort-header="job_role" *matHeaderCellDef> Job Type </th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;padding-top: 10px;" [matTooltip]="element.description"> {{element.job_role}} </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="status">
+                <th mat-header-cell mat-sort-header="status" *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;padding-top: 10px;">
+                  <button type="button" class="btn btn-outline-primary rounded-pill" [matTooltip]="element.description" *ngIf="element.status=='Opened'">{{element.status}}</button>
+                  <button type="button" *ngIf="element.status!='Opened'"
+                    class="btn btn-outline-danger rounded-pill">{{element.status}}</button>
+                </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="action">
+                <th mat-header-cell mat-sort-header="action" *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;padding-top: 10px;">
+                  <div class="dropdown">
+                    <button class="dropbtn">
+                      <div>
+                        &#xFE19;
+                      </div>
+                      <div class="dropdown-content">
+                        <a href="#" [routerLink]="['/jobs/job-details', element._id]">View</a>
+                        <a *ngIf="element.status=='Opened'" (click)="closeJob(element._id)">Close</a>
+                      </div>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+      
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+            </table>
+            <p style="text-align: center;" *ngIf="dataSource.length==0 && !formatDataLoading">No data available</p>
+      
+            <div class='loader flex flex-row' *ngIf="formatDataLoading" id='loader-2'
+              style="text-align: center;margin-right: auto;margin-left: auto;">
+              <span></span><span></span><span></span>
+            </div>
+      
+          </div>
+        </div>
+        <mat-paginator [length]= totalRecords
+            [pageSize]=pageSize
+            [pageIndex]=currentPage
+            (page)="handlePage($event)"
+            [pageSizeOptions]="[2, 5, 10, 25, 100]"
+            showFirstLastButtons
+            aria-label="Select page">
+      </mat-paginator>
+      
+        <!-- <div class="col-sm-18" style="display: flex;">
+        <div class="items-per-page" style="margin-left: 2%;">
+          <label for="itemsPerPage">Items per page:</label>
+          <select id="itemsPerPage">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        
+      <ul id="pagination" style="margin-left: 50%;">
+        <li><a class="" href="#">«</a></li>
+        <li><a href="">1</a></li>
+        <li><a href="" class="active">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">4</a></li>
+        <li><a href="">5</a></li>
+        <li><a href="">6</a></li>
+        <li><a href="">7</a></li>
+        <li><a href="">»</a></li>
+      </ul> 
+      </div> -->
+      </div>
+    </sb-layout-dashboard>

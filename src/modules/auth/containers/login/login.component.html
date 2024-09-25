@@ -1,0 +1,86 @@
+<main>
+    <div class="box">
+     
+      <div class="inner-box">
+        <div class="forms-wrap">
+          <form [formGroup]= "LoginForm" autocomplete="off" class="sign-in-form">
+              
+            <div class="heading">
+              <h2>Welcome Back</h2>
+              
+              <!-- <h6>Not registred yet?</h6>
+              <input  type="submit" value="Sign Up" (click)="  signup()" class="signup-btn" /> -->
+            </div>
+            <div class="alert alert-danger" *ngIf="showAlert" role="alert">
+                {{errorMessage}}
+              </div>
+            <div class="actual-form">
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  class="input-field"
+                  autocomplete="off"
+                  formControlName="userName"
+                  required
+                  placeholder="Please enter user name"
+                /> 
+                <!-- <p style="color: red;" *ngIf="LoginForm.controls['userName'].errors?.required && SignIn.controls['userName'].touched">
+                                UserName is required</p> -->
+                <label for="fname" class="fword">
+                  
+                </label> 
+                <!-- <p style="color: red;" *ngIf="LoginForm.controls['userName'].errors?.['required']">User name is required</p> -->
+              </div>
+  
+              <div class="input-wrap">
+                <input
+                  type="password"
+                  class="input-field"
+                  autocomplete="off"
+                  formControlName="password"
+                  required
+                  placeholder="Please enter password"
+                />
+                <!-- <label>Password</label> -->
+                <!-- <p style="color: red; position: absolute;" *ngIf="LoginForm.controls['password'].errors?.['required']">Password is required</p> -->
+              </div>
+              
+              <input type="submit" value="Sign In" (click)="login()"  class="sign-btn" />
+  
+              <p class="text">
+                Forgotten your password or you login datails?
+                <a href="#">Get help</a> signing in
+              </p>
+            </div>
+          </form>
+  
+          
+        </div>
+
+        <div class="carousel">
+          <div class="images-wrapper">
+            <!-- <img src="./img/image1.png" class="image img-1 show" alt="" />
+            <img src="./img/image2.png" class="image img-2" alt="" />
+            <img src="./img/image3.png" class="image img-3" alt="" /> -->
+          </div>
+  
+          <div class="text-slider">
+            <div class="text-wrap">
+              <div class="text-group">
+                <h2>Create your own Business</h2>
+                <h2>Customize as you like</h2>
+                <h2>Invite students to your class</h2>
+              </div>
+            </div>
+  
+            <div class="bullets">
+              <span class="active" data-value="1"></span>
+              <span data-value="2"></span>
+              <span data-value="3"></span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+
+    </div>

@@ -1,0 +1,68 @@
+<sb-layout-dashboard>
+  <sb-dashboard-head title="Jobs" [hideBreadcrumbs]="false"></sb-dashboard-head>
+  <div style="position: relative;
+  background-color: #fff;
+  border-radius: 3.3rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+  <form action="#" [formGroup]= "LoginForm" style="margin-left: 15%;padding-top: 30px;">
+    <div class="user-details">
+      <div class="input-box">
+        <span class="details">Company Name</span>
+        <input type="text" placeholder="Enter Company Name" required formControlName="companyName">
+        <mat-error *ngIf="submitted && LoginForm.get('companyName').hasError('required')">
+          Please enter an company name
+      </mat-error>
+      </div>
+      <div class="input-box">
+        <span class="details">Logo</span>
+        <input type="file" placeholder="Enter logo" required  >
+      </div>
+      <div class="input-box">
+        <span class="details">Company Short Code</span>
+        <input type="text" placeholder="Enter Company Code" required formControlName="shortCode">
+        <mat-error *ngIf="submitted && LoginForm.get('shortCode').hasError('required')">
+          Please enter an company short code
+      </mat-error>
+      </div>
+      
+      <div class="input-box">
+        <span class="details">Job Role</span>
+        <mat-select class="form-control" required placeholder="Select Job Role" [formControlName]="'jobRole'">
+          <mat-option value="">Select Job Role</mat-option>
+          <mat-option value="Developer">Developer </mat-option>
+          <mat-option value="Tester">Tester</mat-option>
+          </mat-select>
+        <mat-error *ngIf="submitted && LoginForm.get('jobRole').hasError('required')">
+          Please select job role
+      </mat-error>
+      </div>
+
+      <div class="input-box">
+        <span class="details">Experience Level</span>
+        <mat-select class="form-control" required placeholder="Select Experience Level" [formControlName]="'experienceLevel'">
+          <mat-option value="">Select Experience Level</mat-option>
+          <mat-option value="Fresher">Fresher </mat-option>
+          <mat-option value="Experience">Experience</mat-option>
+          </mat-select>
+        <mat-error *ngIf="submitted && LoginForm.get('experienceLevel').hasError('required')">
+          Please select experience level
+      </mat-error>
+      </div>
+
+      <div class="input-box">
+        <span class="details">Job Descriptions</span>
+        <textarea placeholder="Enter Job Descriptions" required formControlName="jobDescriptions" rows="2" cols="52"></textarea>
+      </div>
+    </div>
+    <div class="row">
+    <div class="button">
+      <button class="btn btn-primary rounded-pill" (click)="cancelJob()" > Cancel</button>
+    </div>
+    <div class="button" style="margin-left: 10px;">
+      <button class="btn btn-primary rounded-pill" (click)="createJob()" > Create</button>
+    </div>
+  </div>
+  </form>
+</div>
+            
+      
+</sb-layout-dashboard>

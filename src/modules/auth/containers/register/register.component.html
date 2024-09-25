@@ -1,0 +1,46 @@
+<sb-layout-dashboard>
+    <!-- <sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head> -->
+<div class="container">
+    <div class="title">Farmer Registration</div>
+    <div class="content">
+      <form action="#" [formGroup]= "LoginForm">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Farmer First Name</span>
+            <input type="text" placeholder="Enter Farmer First Name" required formControlName="firstName">
+              <!-- <p style="color: red;" *ngIf="LoginForm.controls['firstName'].errors?.['required']">First Name is required</p> -->
+          </div>
+          <div class="input-box">
+            <span class="details">Farmer Last Name</span>
+            <input type="text" placeholder="Enter Farmer Last Name" required formControlName="lastName">
+          </div>
+          <div class="input-box">
+            <span class="details">Farmer Phone Number</span>
+            <input type="text" placeholder="Enter Farmer Phone Number" required  formControlName="phoneNumber">
+              <!-- <p style="color: red;" *ngIf="LoginForm.controls['phoneNumber'].errors?.['required']">Phone Number is required</p> -->
+          </div>
+          <div class="input-box">
+            <span class="details">Farmer Village</span>
+            <input type="text" placeholder="Enter Farmer Village" required formControlName="village">
+              <!-- <p style="color: red;" *ngIf="LoginForm.controls['village'].errors?.['required']">Village is required</p> -->
+          </div>
+          <div class="input-box">
+            <span class="details">Farmer Taluka</span>
+            <input type="text" placeholder="Enter Farmer Taluka" required  formControlName="taluka">
+            <div *ngIf="showAlert">
+              <!-- <p style="color: red;" *ngIf="LoginForm.controls['taluka'].errors?.['required']">Taluka is required</p> -->
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="details">Farmer District</span>
+            <input type="text" placeholder="Confirm Farmer District" required formControlName="district">
+              <!-- <p style="color: red;" *ngIf="LoginForm.controls['district'].errors?.['required']">District is required</p> -->
+          </div>
+        </div>
+        <div class="button">
+          <button class="sign-btn"  (click)="signup()"> submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</sb-layout-dashboard>

@@ -1,0 +1,45 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Transactions" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <form action="#" [formGroup]= "upadateTransactionForm">
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Crop Name</span>
+          <input type="text" placeholder="Enter Crop Name" required formControlName="cropName">
+          <div *ngIf="showAlert">
+            <!-- <p style="color: red;" *ngIf="upadateTransactionForm.controls['cropName'].errors?.['required']">Crop Name is required</p> -->
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Quantity</span>
+          <input type="text" placeholder="Enter your Quantity" required formControlName="quantity">
+          <div *ngIf="showAlert">
+            <!-- <p style="color: red;" *ngIf="upadateTransactionForm.controls['quantity'].errors?.['required']">Quantity is required</p> -->
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Amount</span>
+          <input type="text" placeholder="Enter Amount" required  formControlName="amount">
+          <div *ngIf="showAlert">
+            <!-- <p style="color: red;" *ngIf="upadateTransactionForm.controls['amount'].errors?.['required']">Amount is required</p> -->
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Sold Out</span>
+          <select class="custom-select" formControlName="soldOut">
+            <!-- <option selected> select type</option> -->
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <!-- <input type="text" placeholder="Enter your Quantity" required formControlName="soldOut"> -->
+          <div *ngIf="showAlert">
+            <!-- <p style="color: red;" *ngIf="upadateTransactionForm.controls['soldOut'].errors?.['required']">sold Out is required</p> -->
+          </div>
+        </div>
+        
+      </div>
+      <div class="button">
+        <button class="sign-btn"  (click)="updateTransaction()"> submit</button>
+      </div>
+    </form>
+    
+</sb-layout-dashboard>
