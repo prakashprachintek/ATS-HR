@@ -44,7 +44,7 @@ export class ApplicantsUpdateComponent implements OnInit {
 
     this.LoginForm = this.fb.group({
       firstName:["", Validators.required],
-      lastName:["", Validators.required],
+      lastName:[""],
       phoneNumber:["", Validators.required],
       applicantType:["", Validators.required],
       skills:[""],
@@ -56,6 +56,7 @@ export class ApplicantsUpdateComponent implements OnInit {
       status:["", Validators.required],
       lookingForJob:[""],
       assignee:[""],
+      location:[""],
     })
     this.getData()
   }
@@ -80,6 +81,7 @@ export class ApplicantsUpdateComponent implements OnInit {
         this.LoginForm.controls['status'].setValue(this.update[0]['status']);
         this.LoginForm.controls['skills'].setValue(this.update[0]['skills']);
         this.LoginForm.controls['assignee'].setValue(this.update[0]['assignee']);
+        this.LoginForm.controls['location'].setValue(this.update[0]['location']);
         if(this.update[0]['comments'] && this.update[0]['comments']['length']>0){
           this.LoginForm.controls['comment'].setValue(this.update[0]['comments'][this.update[0]['comments']['length']-1]['comment']);
         }
@@ -90,24 +92,23 @@ export class ApplicantsUpdateComponent implements OnInit {
   }
 
     userUpdate()  {
-      console.log(this.languages.value)
-    this.showAlert = true;
-    if(!this.LoginForm.valid) {
-      this.LoginForm.markAllAsTouched();
-      return
-    }
-    this.LoginForm.value.orgId = this.userData[0].org_id
-    this.LoginForm.value.userId = this.userData[0]._id
-    this.LoginForm.value.farmerId = this.farmerId
-    // this.customerService.userUpdate(this.LoginForm.value).subscribe((res) => {
-    //   if(res.status=='success'){
-    //     swal.fire('Successfully Updated!', '', 'success')
-    //     this.router.navigate(['/applicants']);
-    //   }else {
-    //     this.errorMessage = res.message
-    //     this.showAlert = true;
-    //   }
-    // })
+      this.showAlert = true;
+      if(!this.LoginForm.valid) {
+        this.LoginForm.markAllAsTouched();
+        return
+      }
+      this.LoginForm.value.orgId = this.userData[0].org_id
+      this.LoginForm.value.userId = this.userData[0]._id
+      this.LoginForm.value.farmerId = this.farmerId
+      this.customerService.userUpdate(this.LoginForm.value).subscribe((res) => {
+        if(res.status=='success'){
+          swal.fire('Successfully Updated!', '', 'success')
+          this.router.navigate(['/applicants']);
+        }else {
+          this.errorMessage = res.message
+          this.showAlert = true;
+        }
+      })
   }
       
 }

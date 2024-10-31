@@ -111,6 +111,10 @@
           <textarea placeholder="Enter Feedback"  formControlName="comment" rows="2" cols="61"></textarea>
         </div>
         <div class="input-box">
+          <span class="details">Location</span>
+          <input type="text" placeholder="Enter Location" formControlName="location">
+        </div>
+        <div class="input-box">
           <mat-label>Choose DOB</mat-label>
           <input matInput [matDatepicker]="picker" [formControlName]="'dob'">
           <mat-hint>DD/MM/YYYY</mat-hint>

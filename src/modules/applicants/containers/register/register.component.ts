@@ -44,16 +44,17 @@ export class RegisterComponent implements OnInit {
         firstName:["", Validators.required],
         lastName:[""],
         applicantType:["", Validators.required],
-        phoneNumber:["", Validators.required],
-        email:["", Validators.required],
-        skills:["", Validators.required],
-        dob:["", Validators.required],
-        qualification:["", Validators.required],
+        phoneNumber:["", [Validators.required,Validators.minLength(10)]],
+        email:[""],
+        skills:[""],
+        dob:[""],
+        qualification:[""],
         comment:[""],
         reference:[""],
-        language:["", Validators.required],
+        language:[""],
         lookingForJob:[""],
         assignee:[""],
+        location:[""],
       })
     }
 
@@ -77,6 +78,7 @@ export class RegisterComponent implements OnInit {
       }
       this.LoginForm.controls['language'].setValue(langValue);
       this.submitted = true
+      console.log(this.LoginForm)
       if(!this.LoginForm.valid) {
         this.LoginForm.markAllAsTouched();
         return
@@ -85,7 +87,8 @@ export class RegisterComponent implements OnInit {
       this.LoginForm.value.orgId = this.userData[0].org_id
       this.LoginForm.value.userId = this.userData[0]._id
       if(this.uploadedFile==undefined){
-        this.proceedFurtherSubmit('')
+        // this.proceedFurtherSubmit('')
+        console.log("===dfdd")
       } else {
         let formData:FormData = new FormData();
         formData.append('uploadFile', this.uploadedFile, this.uploadedFile.name)

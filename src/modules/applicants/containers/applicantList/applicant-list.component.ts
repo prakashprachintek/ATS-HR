@@ -46,18 +46,30 @@ export class ApplicantsListComponent implements OnInit {
     endDate = ""
     maxDate = new Date();
     constructor(private router: Router,private customerService : TablesService,private cd:ChangeDetectorRef) {
+      // 
     }
     ngOnInit() {
       // this.maxDate = new Date;
-        var tempUser = localStorage.getItem('user') || ''
-        this.userData = JSON.parse(tempUser)
-        let formData = {
-          orgId: this.userData[0].org_id
+      const previousUrl = history.state.prevPage ?? null;
+      console.log(previousUrl)
+      var tempUser = localStorage.getItem('user') || ''
+      this.userData = JSON.parse(tempUser)
+      if(previousUrl!=null){
+        let applicantType = localStorage.getItem('applicantType')
+        if(applicantType!=undefined){
+          this.applicantType = applicantType
         }
-        this.customerService.getAssigneeList(formData).subscribe((res) => {
-          this.assigneeList = res.results
-        })
-        this.getData()
+      }else{
+        localStorage.removeItem('applicantType')
+      }
+      
+      let formData = {
+        orgId: this.userData[0].org_id
+      }
+      this.customerService.getAssigneeList(formData).subscribe((res) => {
+        this.assigneeList = res.results
+      })
+      this.getData()
     }
 
     getData() {

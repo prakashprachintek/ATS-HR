@@ -14,6 +14,7 @@ export interface PeriodicElement5 {
     applicant_type:string;
     dob:string;
     technical_skills:string
+    location:string
   }
 @Component({
     selector: 'sb-applicant-user-list',
@@ -22,7 +23,7 @@ export interface PeriodicElement5 {
     styleUrls: ['applicant-user-list.component.scss'],
 })
 export class ApplicantsUserListComponent implements OnInit {
-    displayedColumns: string[] = ['first_name','last_name','phone','email','applicant_type','dob','technical_skills','action'];
+    displayedColumns: string[] = ['first_name','last_name','phone','email','applicant_type','dob','technical_skills','location','action'];
     ELEMENT_DATA: PeriodicElement5[] = [ ];
     dataSource = new MatTableDataSource<PeriodicElement5>();
     formatDataLoading = false
@@ -140,7 +141,7 @@ export class ApplicantsUserListComponent implements OnInit {
           const csvArray: string[] = this.parseCsv(csvData);
           for(var a=1;a<csvArray.length;a++){
             if(csvArray[a][0]!=''){
-              this.csvDataValues.push({'first_name':csvArray[a][0],'last_name':csvArray[a][1],'phone':csvArray[a][2],'email':csvArray[a][3],'applicant_type':csvArray[a][4],'dob':csvArray[a][5],'technical_skills':csvArray[a][6]}) 
+              this.csvDataValues.push({'first_name':csvArray[a][0],'last_name':csvArray[a][1],'phone':csvArray[a][2],'email':csvArray[a][3],'applicant_type':csvArray[a][4],'dob':csvArray[a][5],'technical_skills':csvArray[a][6],'location':csvArray[a][7]}) 
             }
           }
         this.totalRecords = this.csvDataValues.length

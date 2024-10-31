@@ -10,10 +10,10 @@
         </div>
         
         <div class="col-xl-3 col-md-6">
-            <sb-card-view-details link="/dashboard" background="bg-success"><div class="card-body">Freshers - {{dashboardData.freshers}}</div></sb-card-view-details>
+            <sb-card-view-details (click)="redirect('Fresher')" background="bg-success"><div class="card-body">Freshers - {{dashboardData.freshers}}</div></sb-card-view-details>
         </div>
         <div class="col-xl-3 col-md-6">
-            <sb-card-view-details link="/dashboard" background="bg-warning"><div class="card-body">Experiance - {{dashboardData.experience}}</div></sb-card-view-details>
+            <sb-card-view-details (click)="redirect('Experience')" background="bg-warning"><div class="card-body">Experiance - {{dashboardData.experience}}</div></sb-card-view-details>
         </div>
         <div class="col-xl-3 col-md-6">
             <sb-card-view-details link="/jobs" background="bg-danger"><div class="card-body">Jobs - {{dashboardData.jobs}}</div></sb-card-view-details>

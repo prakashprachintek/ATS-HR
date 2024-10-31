@@ -15,21 +15,21 @@
           </div>
           <div class="input-box">
             <span class="details">Last Name</span>
-            <input type="text" placeholder="Enter Last Name" required formControlName="lastName">
+            <input type="text" placeholder="Enter Last Name" formControlName="lastName">
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter Phone Number" required  formControlName="phoneNumber">
+            <input type="number" placeholder="Enter Phone Number" required maxlength="10"  formControlName="phoneNumber">
             <mat-error *ngIf="submitted && LoginForm.get('phoneNumber').hasError('required')">
               Please enter Phone number
           </mat-error>
+          <mat-error *ngIf="submitted && LoginForm.get('phoneNumber').hasError('minlength')">
+            Please enter valid Phone number
+        </mat-error>
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter Email" required formControlName="email">
-            <mat-error *ngIf="submitted && LoginForm.get('email').hasError('required')">
-              Please enter Email
-          </mat-error>
+            <input type="text" placeholder="Enter Email" formControlName="email">
           </div>
 
           <div class="input-box">
@@ -39,7 +39,7 @@
 
           <div class="input-box">
             <span class="details">Qualification</span>
-            <mat-select class="form-control" required placeholder="Select qualification" [formControlName]="'qualification'">
+            <mat-select class="form-control" placeholder="Select qualification" [formControlName]="'qualification'">
               <mat-option value="">Please Select</mat-option>
               <mat-option value="BE">B.E. / B.Tech </mat-option>
               <mat-option value="BA">B.A </mat-option>
@@ -62,9 +62,6 @@
               <mat-option value="PhD">Ph.D.</mat-option>
 
             </mat-select>
-            <mat-error *ngIf="submitted && LoginForm.get('qualification').hasError('required')">
-              Please select Qualification
-          </mat-error>
           </div>
 
           <div class="input-box">
@@ -77,32 +74,30 @@
                   </mat-select-trigger>
                 <mat-option *ngFor="let language of languagesList;" [value]="language">{{language}}</mat-option>
                 </mat-select>
-              <mat-error *ngIf="submitted && LoginForm.get('language').hasError('required')">
-                Please select Language
-            </mat-error>
           </div>
 
           <div class="input-box">
             <span class="details">Looking for job?</span>
-            <mat-select class="form-control" required placeholder="Looking for job?" [formControlName]="'lookingForJob'">
+            <mat-select class="form-control" placeholder="Looking for job?" [formControlName]="'lookingForJob'">
               <mat-option value="">Please Select</mat-option>
               <mat-option value="Yes">Yes </mat-option>
               <mat-option value="No">No</mat-option>
               </mat-select>
-              <mat-error *ngIf="submitted && LoginForm.get('lookingForJob').hasError('required')">
-                Please select Type
-            </mat-error>
+             
           </div>
 
           <div class="input-box">
             <span class="details">Applicant Type</span>
-            <mat-select class="form-control" required placeholder="Select applicant type" [formControlName]="'applicantType'">
+            <mat-select class="form-control" placeholder="Select applicant type" [formControlName]="'applicantType'">
               <mat-option value="">Please Select</mat-option>
               <mat-option value="Fresher">Fresher </mat-option>
               <mat-option value="Experience">Experience</mat-option>
               <mat-option value="IT">IT</mat-option>
               <mat-option value="NonIT">Non IT</mat-option>
               </mat-select>
+              <mat-error *ngIf="submitted && LoginForm.get('applicantType').hasError('required')">
+                Please select Type
+            </mat-error>
           </div>
 
           <div class="input-box">
@@ -111,18 +106,12 @@
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="submitted && LoginForm.get('dob').hasError('required')">
-              Please select DOB
-            </mat-error>
           </div>
           
 
           <div class="input-box">
             <span class="details">Technical Skills</span>
-            <textarea placeholder="Enter Technical Skills" required formControlName="skills" rows="2" cols="35"></textarea>
-            <mat-error *ngIf="submitted && LoginForm.get('skills').hasError('required')">
-              Please enter Technical skills
-          </mat-error>
+            <textarea placeholder="Enter Technical Skills"  formControlName="skills" rows="2" cols="35"></textarea>
           </div>
 
           <div class="input-box">
@@ -132,12 +121,15 @@
 
           <div class="input-box">
             <span class="details">Assignee</span>
-            <mat-select class="form-control" required placeholder="Select Assignee" [formControlName]="'assignee'">
+            <mat-select class="form-control" placeholder="Select Assignee" [formControlName]="'assignee'">
               <mat-option value="">Please Select</mat-option>
               <mat-option *ngFor="let assignee of assigneeList" [value]="assignee._id">{{assignee.first_name}} {{assignee.last_name}} </mat-option>
               </mat-select>
           </div>
-
+          <div class="input-box">
+            <span class="details">Location</span>
+            <input type="text" placeholder="Enter Location" formControlName="location">
+          </div>
           <div class="input-box">
             <span class="details">Resume</span>
             <input type="file" style="border: none;padding-left: 0px;" (change)="onFileChanged($event)" accept=".pdf,.doc, .docx">
