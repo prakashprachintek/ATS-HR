@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChartsService } from '../../services/job.service'
+import { JobService } from '../../services/job.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -19,7 +19,7 @@ export class TransactionUpdateComponent implements OnInit {
    formatDataLoading = false
    soldOut = ''
    userData:any
-    constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute,private customerService : ChartsService) {}
+    constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute,private customerService : JobService) {}
     ngOnInit() {
       this.route.params.subscribe(params => {
         this.transactionId = params['id']
@@ -36,7 +36,7 @@ export class TransactionUpdateComponent implements OnInit {
     getData() { 
       var formData = {"transcationId":this.transactionId}
       this.formatDataLoading = true
-      this.customerService.getTransactionsInfo(formData).subscribe((res) => {
+      this.customerService.getJobInfo(formData).subscribe((res) => {
         this.update = res.results
           if(this.update.length>0){
             this.upadateTransactionForm.controls['cropName'].setValue(this.update[0]['crop_name']);
@@ -60,25 +60,25 @@ export class TransactionUpdateComponent implements OnInit {
       })
      }
 
-     userUpdate()  {
-      this.showAlert = true;
-      if(!this.upadateTransactionForm.valid) {
-        this.upadateTransactionForm.markAllAsTouched();
-        return
-      }
-      var tempUser = localStorage.getItem('user') || ''
-      this.userData = JSON.parse(tempUser)
-      this.upadateTransactionForm.value.orgId = this.userData[0].org_id
-      this.upadateTransactionForm.value.userId = this.userData[0]._id
-      this.upadateTransactionForm.value.transcationId = this.userData[0].transcationId
-      this.customerService.updateTransaction(this.upadateTransactionForm.value).subscribe((res) => {
-        if(res.status=='success'){
-          this.router.navigate(['/transactions']);
-        }else {
-          this.errorMessage = res.message
-          this.showAlert = true;
-        }
-      })
-    }
+    //  userUpdate()  {
+    //   this.showAlert = true;
+    //   if(!this.upadateTransactionForm.valid) {
+    //     this.upadateTransactionForm.markAllAsTouched();
+    //     return
+    //   }
+    //   var tempUser = localStorage.getItem('user') || ''
+    //   this.userData = JSON.parse(tempUser)
+    //   this.upadateTransactionForm.value.orgId = this.userData[0].org_id
+    //   this.upadateTransactionForm.value.userId = this.userData[0]._id
+    //   this.upadateTransactionForm.value.transcationId = this.userData[0].transcationId
+    //   this.customerService.updateTransaction(this.upadateTransactionForm.value).subscribe((res) => {
+    //     if(res.status=='success'){
+    //       this.router.navigate(['/transactions']);
+    //     }else {
+    //       this.errorMessage = res.message
+    //       this.showAlert = true;
+    //     }
+    //   })
+    // }
       
 }

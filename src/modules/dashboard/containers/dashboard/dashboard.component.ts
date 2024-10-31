@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service'
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'sb-dashboard',
@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
     userData:any
     dashboardData = {}
     dataLoading = false
-    constructor(private dashboardService : DashboardService,private cd:ChangeDetectorRef,private router: Router) {
+    constructor(private dashboardService : DashboardService,private cd:ChangeDetectorRef,private router: Router,private activatedRoute: ActivatedRoute) {
         
     }
     ngOnInit() {
@@ -36,6 +36,6 @@ export class DashboardComponent implements OnInit {
 
     redirect(type:any){
         localStorage.setItem('applicantType',type)
-        this.router.navigate(['/applicants'], { state: { prevPage: this.router.url } });
+        this.router.navigate(['/applicants'], { state: { prevPage: this.router.url },relativeTo: this.activatedRoute });
     }
 }
